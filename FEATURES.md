@@ -39,13 +39,13 @@ Use this checklist to track progress.
 ## ⚙️ Backend (NestJS)
 
 - [ ] **Authentication & Security**
-  - [ ] User registration & login
-  - [ ] Block user after 3 faild attem on login
-  - [ ] JWT + refresh tokens
-  - [ ] Role-based access (Admin, Author, Reader)
-  - [ ] Secure password hashing (bcrypt)
+  - [x] User registration & login
+  - [x] Block user after 3 failed attempts on login
+  - [x] JWT + refresh tokens
+  - [x] Role-based access (Admin, Author, Reader)
+  - [x] Secure password hashing (bcrypt)
   - [ ] CSRF & Helmet security headers
-  - [ ] Input validation & sanitization
+  - [x] Input validation & sanitization
 
 - [ ] **User Management**
   - [ ] CRUD for user profiles
