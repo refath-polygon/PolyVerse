@@ -58,17 +58,27 @@ describe('AuthController', () => {
 
   describe('register', () => {
     it('should register a user', async () => {
-      const registerDto: RegisterDto = { email: 'test@example.com', password: 'password123' };
-      jest.spyOn(service, 'register').mockResolvedValue({ message: 'User registered successfully' });
+      const registerDto: RegisterDto = {
+        email: 'test@example.com',
+        password: 'password123',
+      };
+      jest
+        .spyOn(service, 'register')
+        .mockResolvedValue({ message: 'User registered successfully' });
 
-      expect(await controller.register(registerDto)).toEqual({ message: 'User registered successfully' });
+      expect(await controller.register(registerDto)).toEqual({
+        message: 'User registered successfully',
+      });
       expect(service.register).toHaveBeenCalledWith(registerDto);
     });
   });
 
   describe('login', () => {
     it('should log in a user and return tokens', async () => {
-      const loginDto: LoginDto = { email: 'test@example.com', password: 'password123' };
+      const loginDto: LoginDto = {
+        email: 'test@example.com',
+        password: 'password123',
+      };
       const tokens = { accessToken: 'access', refreshToken: 'refresh' };
       jest.spyOn(service, 'login').mockResolvedValue(tokens);
 
@@ -83,7 +93,9 @@ describe('AuthController', () => {
       const tokens = { accessToken: 'newAccess', refreshToken: 'newRefresh' };
       jest.spyOn(service, 'refreshTokens').mockResolvedValue(tokens);
 
-      const req = { user: { refreshToken: 'oldRefresh' } } as unknown as Request;
+      const req = {
+        user: { refreshToken: 'oldRefresh' },
+      } as unknown as Request;
       expect(await controller.refresh(req)).toEqual(tokens);
       expect(service.refreshTokens).toHaveBeenCalledWith('oldRefresh');
     });
@@ -91,10 +103,14 @@ describe('AuthController', () => {
 
   describe('logout', () => {
     it('should log out a user', async () => {
-      jest.spyOn(service, 'logout').mockResolvedValue({ message: 'Logged out successfully' });
+      jest
+        .spyOn(service, 'logout')
+        .mockResolvedValue({ message: 'Logged out successfully' });
 
       const req = { user: { userId: 1 } } as unknown as Request;
-      expect(await controller.logout(req)).toEqual({ message: 'Logged out successfully' });
+      expect(await controller.logout(req)).toEqual({
+        message: 'Logged out successfully',
+      });
       expect(service.logout).toHaveBeenCalledWith(1);
     });
   });
@@ -111,7 +127,10 @@ describe('AuthController', () => {
     it('should handle google auth redirect', async () => {
       const user = { email: 'google@example.com' };
       const req = { user } as unknown as Request;
-      expect(await controller.googleAuthRedirect(req)).toEqual({ message: 'Google OAuth successful', user });
+      expect(await controller.googleAuthRedirect(req)).toEqual({
+        message: 'Google OAuth successful',
+        user,
+      });
     });
   });
 
@@ -127,7 +146,10 @@ describe('AuthController', () => {
     it('should handle github auth redirect', async () => {
       const user = { email: 'github@example.com' };
       const req = { user } as unknown as Request;
-      expect(await controller.githubAuthRedirect(req)).toEqual({ message: 'GitHub OAuth successful', user });
+      expect(await controller.githubAuthRedirect(req)).toEqual({
+        message: 'GitHub OAuth successful',
+        user,
+      });
     });
   });
 });

@@ -14,14 +14,17 @@ export interface IUser extends Document {
   updatedAt: Date;
 }
 
-export const UserSchema = new Schema<IUser>({
-  name: { type: String, required: true },
-  username: { type: String, required: true, unique: true, index: true },
-  email: { type: String, required: true, unique: true, index: true },
-  passwordHash: String,
-  providers: [{ provider: String, id: String }],
-  roles: { type: [String], default: ['reader'] },
-  bio: String,
-  avatar: String,
-  isVerified: { type: Boolean, default: false },
-}, { timestamps: true });
+export const UserSchema = new Schema<IUser>(
+  {
+    name: { type: String, required: true },
+    username: { type: String, required: true, unique: true, index: true },
+    email: { type: String, required: true, unique: true, index: true },
+    passwordHash: String,
+    providers: [{ provider: String, id: String }],
+    roles: { type: [String], default: ['reader'] },
+    bio: String,
+    avatar: String,
+    isVerified: { type: Boolean, default: false },
+  },
+  { timestamps: true },
+);

@@ -1,10 +1,10 @@
-import { Injectable,  } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Redis } from 'ioredis';
-import { InjectRedis,  } from '@nestjs-modules/ioredis';
+import { InjectRedis } from '@nestjs-modules/ioredis';
 
 @Injectable()
 export class RedisService {
-  constructor( @InjectRedis() private readonly redis: Redis,) {}
+  constructor(@InjectRedis() private readonly redis: Redis) {}
 
   async set(key: string, value: string, ttlSeconds?: number): Promise<void> {
     if (ttlSeconds) {

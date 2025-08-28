@@ -20,13 +20,14 @@ services:
     command: npm run start:dev
     develop:
       watch:
-        - path: ./backend/src
+        - action: sync+restart
+          path: ./backend/src
           target: /usr/src/app/src
-          action: sync
           ignore:
             - node_modules/**
-        - path: ./backend/package.json
-          action: rebuild
+        - action: rebuild
+          path: ./backend/package.json
+          
 
   frontend:
     build:

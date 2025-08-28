@@ -3,11 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IUser } from './schemas/user.schema';
 
-
-
 @Injectable()
 export class UserService {
-
   constructor(@InjectModel('User') private userModel: Model<IUser>) {}
 
   async findByEmail(email: string): Promise<IUser | null> {
@@ -27,12 +24,20 @@ export class UserService {
     return newUser.save();
   }
 
-  async updateRefreshToken(userId: string, refreshToken: string | null): Promise<void> {
+  async updateRefreshToken(
+    userId: string,
+    refreshToken: string | null,
+  ): Promise<void> {
     await this.userModel.findByIdAndUpdate(userId, { refreshToken }).exec();
   }
 
-  async update(userId: string, userData: Partial<IUser>): Promise<IUser | null> {
-    return this.userModel.findByIdAndUpdate(userId, userData, { new: true }).exec();
+  async update(
+    userId: string,
+    userData: Partial<IUser>,
+  ): Promise<IUser | null> {
+    return this.userModel
+      .findByIdAndUpdate(userId, userData, { new: true })
+      .exec();
   }
 
   async remove(userId: string): Promise<any> {

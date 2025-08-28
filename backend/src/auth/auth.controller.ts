@@ -1,4 +1,13 @@
-import { Controller, Post, Body, UseGuards, Req, HttpCode, HttpStatus, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Req,
+  HttpCode,
+  HttpStatus,
+  Get,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import type { RequestWithUser } from './interfaces/request-with-user.interface';
 import { LoginDto } from './dto/login.dto';
@@ -54,7 +63,10 @@ export class AuthController {
   @Get('google')
   @UseGuards(AuthGuard('google'))
   @ApiOperation({ summary: 'Initiate Google OAuth login' })
-  @ApiResponse({ status: 302, description: 'Redirects to Google for authentication.' })
+  @ApiResponse({
+    status: 302,
+    description: 'Redirects to Google for authentication.',
+  })
   async googleAuth(@Req() req) {}
 
   @Get('google/redirect')
@@ -69,7 +81,10 @@ export class AuthController {
   @Get('github')
   @UseGuards(AuthGuard('github'))
   @ApiOperation({ summary: 'Initiate GitHub OAuth login' })
-  @ApiResponse({ status: 302, description: 'Redirects to GitHub for authentication.' })
+  @ApiResponse({
+    status: 302,
+    description: 'Redirects to GitHub for authentication.',
+  })
   async githubAuth(@Req() req) {}
 
   @Get('github/redirect')
@@ -81,4 +96,3 @@ export class AuthController {
     return { message: 'GitHub OAuth successful', user: req.user };
   }
 }
-

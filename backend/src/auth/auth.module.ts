@@ -21,7 +21,7 @@ import { RefreshTokenGuard } from './guards/refresh-token.guard';
       signOptions: { expiresIn: '15m' },
     }),
   ],
-  providers: [AuthService, JwtStrategy, LocalStrategy,   RefreshTokenGuard],
+  providers: [AuthService, JwtStrategy, LocalStrategy, RefreshTokenGuard],
   controllers: [AuthController],
 })
 export class AuthModule {}
