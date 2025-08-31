@@ -13,9 +13,21 @@ async function bootstrap() {
     .setDescription('The Blog API description')
     .setVersion('1.0')
     .addTag('blog')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+
+  const swaggerOptions = {
+    swaggerOptions: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
+  };
+
+  SwaggerModule.setup('api', app, document, swaggerOptions);
 
   await app.listen(process.env.PORT ?? 4000, ()=>{
     console.log(`Application is running on: ${process.env.PORT ?? 4000}`);

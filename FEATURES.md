@@ -89,10 +89,10 @@ Use this checklist to track progress.
 
 ## 🛠️ DevOps (Infra, CI/CD, Security)
 
-- [ ] **Dockerization**
-  - [ ] Dockerfile for Next.js
-  - [ ] Dockerfile for NestJS API
-  - [ ] Docker Compose (local dev: frontend, backend, MongoDB, Redis)
+- [X] **Dockerization**
+  - [X] Dockerfile for Next.js
+  - [X] Dockerfile for NestJS API
+  - [X] Docker Compose (local dev: frontend, backend, MongoDB, Redis)
 
 - [ ] **Kubernetes Deployment**
   - [ ] Pods & deployments (frontend, backend, db, redis)
@@ -122,7 +122,7 @@ Use this checklist to track progress.
 ## 📚 Documentation
 
 - [ ] Project setup guide
-- [ ] API documentation (Swagger/OpenAPI)
+- [X] API documentation (Swagger/OpenAPI)
 - [ ] Deployment guide (Docker + Kubernetes)
 - [ ] Security checklist
 - [ ] Final capstone report
