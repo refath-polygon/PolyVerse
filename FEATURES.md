@@ -69,9 +69,9 @@ Use this checklist to track progress.
   - [ ] share posts (Twitter, Facebook, LinkedIn)
 
 - [ ] **API**
-  - [ ] REST API (CRUD endpoints)
+  - [X] REST API (CRUD endpoints)
   - [ ] Pagination & filtering
-  - [ ] Swagger/OpenAPI documentation
+  - [X] Swagger/OpenAPI documentation
   - [ ] Image hosting (Cloudinary)
 
 

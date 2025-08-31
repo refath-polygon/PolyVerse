@@ -8,6 +8,7 @@ import { RedisModule } from './redis/redis.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/user.module';
 import { ConfigModule } from '@nestjs/config';
+import { BlogModule } from './blog/blog.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ConfigModule } from '@nestjs/config';
         limit: 10, // 10 requests
       },
     ]),
+    BlogModule,
   ],
   controllers: [AppController],
   providers: [
