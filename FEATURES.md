@@ -44,7 +44,7 @@ Use this checklist to track progress.
   - [x] JWT + refresh tokens
   - [x] Role-based access (Admin, Author, Reader)
   - [x] Secure password hashing (bcrypt)
-  - [ ] CSRF & Helmet security headers
+  - [X] CSRF & Helmet security headers
   - [x] Input validation & sanitization
 
 - [ ] **User Management**
@@ -54,11 +54,11 @@ Use this checklist to track progress.
   - [ ] Password reset flow
 
 - [ ] **Blog Management**
-  - [ ] Post CRUD
-  - [ ] Draft/publish workflow
+  - [X] Post CRUD
+  - [X] Draft/publish workflow
   - [ ] Elestich search
   - [ ] Tag & category system
-  - [ ] SEO fields (title, description, slug)
+  - [X] SEO fields (title, description, slug)
   - [ ] Image uploads (Cloudinary/S3)
 
 - [ ] **Comments & Engagement**

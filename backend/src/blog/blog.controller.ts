@@ -74,6 +74,23 @@ export class BlogController {
     return this.blogService.findAll(cursor, limit ? parseInt(limit, 10) : 10);
   }
 
+  @Get('search')
+  @ApiOperation({ summary: 'Search for posts' })
+  @ApiQuery({
+    name: 'q',
+    required: true,
+    type: String,
+    description: 'The search query',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'A list of posts that match the search query.',
+    type: [PostSchema],
+  })
+  search(@Query('q') query: string) {
+    return this.blogService.search(query);
+  }
+
   @Get(':slug')
   @ApiOperation({ summary: 'Get a single post by slug' })
   @ApiParam({ name: 'slug', type: String, description: 'The slug of the post' })

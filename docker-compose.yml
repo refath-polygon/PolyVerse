@@ -61,9 +61,38 @@ services:
       - "6379:6379"
     networks:
       - app-network
+  
+  elasticsearch:
+    image: elasticsearch:8.11.0
+    container_name: blog-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=changeme
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    networks:
+      - app-network
+
+  kibana:
+    image: kibana:8.11.0
+    container_name: blog-kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=changeme
+    networks:
+      - app-network
 
 volumes:
   mongo-data:
+  esdata:
 
 networks:
   app-network:

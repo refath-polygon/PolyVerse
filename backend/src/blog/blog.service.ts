@@ -9,11 +9,15 @@ import { Post, PostDocument } from './schemas/post.schema';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { UserFromJwt } from '../auth/interfaces/request-with-user.interface';
+import { ElasticsearchService } from '../elasticsearch/elasticsearch.service';
 import sanitizeHtml = require('sanitize-html');
 
 @Injectable()
 export class BlogService {
-  constructor(@InjectModel(Post.name) private postModel: Model<PostDocument>) {}
+  constructor(
+    @InjectModel(Post.name) private postModel: Model<PostDocument>,
+    private readonly elasticsearchService: ElasticsearchService,
+  ) {}
 
   private sanitizeContent(content: string): string {
     return sanitizeHtml(content, {
@@ -34,7 +38,9 @@ export class BlogService {
       content: sanitizedContent,
       author: user.userId,
     });
-    return createdPost.save();
+    const savedPost = await createdPost.save();
+    await this.elasticsearchService.indexPost(savedPost);
+    return savedPost;
   }
 
   async findAll(
@@ -87,6 +93,7 @@ export class BlogService {
     if (!updatedPost) {
       throw new NotFoundException(`Post with ID "${id}" not found`);
     }
+    await this.elasticsearchService.update(updatedPost);
     return updatedPost;
   }
 
@@ -102,6 +109,7 @@ export class BlogService {
     if (!deletedPost) {
       throw new NotFoundException(`Post with ID "${id}" not found`);
     }
+    await this.elasticsearchService.remove(id);
     return deletedPost;
   }
 
@@ -123,6 +131,11 @@ export class BlogService {
     if (!publishedPost) {
       throw new NotFoundException(`Post with ID "${id}" not found`);
     }
+    await this.elasticsearchService.update(publishedPost);
     return publishedPost;
+  }
+
+  async search(query: string) {
+    return this.elasticsearchService.search(query);
   }
 }

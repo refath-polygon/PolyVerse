@@ -9,6 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { BlogModule } from './blog/blog.module';
+import { ElasticsearchModule } from './elasticsearch/elasticsearch.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { BlogModule } from './blog/blog.module';
       },
     ]),
     BlogModule,
+    ElasticsearchModule,
   ],
   controllers: [AppController],
   providers: [
